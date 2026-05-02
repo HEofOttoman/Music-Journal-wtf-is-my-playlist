@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
-//import Navbar from "../components/Navbar.astro";
-//import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 //import { Font } from "astro:assets";
 //import Search from "../components/Search.tsx";
 //import type { Thing, WithContext, WebSite } from "schema-dts";
@@ -45,7 +45,7 @@ import "../styles/global.css";
 //const schemas = [websiteSchema, ...(jsonLdSchemas ?? [])];
 ---
 
-<!--
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -59,7 +59,7 @@ import "../styles/global.css";
     <meta content={Astro.generator} name="generator" />
 
     
-    {description && <meta content={description} name="description" />}
+    <!-- {description && <meta content={description} name="description" />}
     <meta content={pageTitle} property="og:title" />
     <meta content={description} property="og:description" />
     <meta content={pageType ?? "website"} property="og:type" />
@@ -84,11 +84,10 @@ import "../styles/global.css";
     <Font cssVariable="--font-geist-mono" preload transition:persist />
     <Font cssVariable="--font-outfit" preload transition:persist />
     <title>{pageTitle}</title>
-    <Posthog />
+    <Posthog /> -->
   </head>
   <body class="flex min-h-screen flex-col">
     <Navbar />
-    <Search client:idle />
     <div class="w-full px-4">
       <main class="bg-background mx-auto w-full max-w-5xl">
         <slot />
@@ -98,4 +97,3 @@ import "../styles/global.css";
     
   </body>
 </html>
--->
