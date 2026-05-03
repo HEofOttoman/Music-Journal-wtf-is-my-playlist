@@ -7,6 +7,38 @@
 }
 
 
+#home {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 2rem;
+    height: 100vh;
+    width: 100%;
+    padding: 0 3rem;
+    box-sizing: border-box;
+    position: relative;
+}
+.pfp {
+    height: 12rem;
+    border-radius: 2rem;
+    box-shadow:
+        0 0 0 1px #ffffff1a,
+        0 10px 40px -10px #f5e97a33,
+        0 20px 60px -20px #00000080;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.pfp:hover {
+    transform: translateY(-4px) rotate(-1.5deg);
+    box-shadow:
+        0 0 0 1px #ffffff22,
+        0 14px 50px -10px #f5e97a55,
+        0 24px 70px -20px #000000a0;
+}
+
+
 /*The Big Navigation Bar At The Top Of The Website*/
 .global-navbar {
     position: fixed;
