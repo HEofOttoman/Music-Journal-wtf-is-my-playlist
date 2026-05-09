@@ -1,4 +1,12 @@
 
+@font-face {
+    font-family: 'Kalam Regular';
+    src: url(../assets/fonts/Kalam-Regular.ttf);
+
+    font-display: swap;
+
+}
+
 /*Navbar logo*/
 #nav-icon {
     width: 100px;
@@ -45,6 +53,24 @@
     margin: 3rem;
 }
 
+/* #about */section { 
+    max-width: 65vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* section {
+    margin-top: 50px;
+    margin-bottom: 25%;
+    max-width: fit-content;
+    scroll-margin-top: 200px;
+} */
+
 /*The Big Navigation Bar At The Top Of The Website*/
 .global-navbar {
     position: fixed;
@@ -56,10 +82,10 @@
     align-items: flex-start;
 
     padding: 1rem 1rem 2rem;
-    background-color: #222327; /*or #1d1e1e*/
+    background-color: #13151b; /*or #1d1e1e*/
     width: 100%;
     
-    color: #abb0bb;
+    color: #f0d7c8;
     box-sizing: border-box;
 
     
@@ -138,14 +164,6 @@ li {
 a:link {
     color: aliceblue;
     
-}
-
-
-section {
-    margin-top: 50px;
-    margin-bottom: 25%;
-    max-width: fit-content;
-    scroll-margin-top: 200px;
 }
 
 .table-of-contents {
@@ -266,7 +284,8 @@ body {
     padding-top: 150px; /*navbar hack*/
     
     
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Kalam Regular';
     
     display: flex;
     justify-content: center;
@@ -277,7 +296,7 @@ body {
     margin: 0;
     font-size: larger;
 
-    background-color: /*#292a30*/ #27282c /*#27282c*/;
+    background-color: /*#292a30*/ #14151b /*#27282c*/;
     color: #ffe4c4;
 
 
