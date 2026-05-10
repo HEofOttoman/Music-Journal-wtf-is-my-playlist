@@ -1,8 +1,42 @@
 ---
 
 import Layout from "../layouts/layout.astro";
+import Footer from "../components/Footer.astro";
+
+const API_KEY = import.meta.env.LASTFM_API_KEY;
+const USERNAME = "henrywau"; //import.meta.env.LASTFM_USERNAME;
+
+// const url = `https://audioscrobbler.com{USERNAME}&api_key=${API_KEY}&format=json&limit=5`;
+const url = `https://ws.audioscrobbler.com/2.0${USERNAME}&api_key=${API_KEY}&format=json&limit=5`
+
+const response = await fetch(url);
+const data = await response.json();
+const tracks = data.recenttracks.track as Track[];
+const topArtists = 10;
+
+// const lastBuiltDateTime = new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Sydney' });
+
+interface Track {
+  name: string;
+  artist: { '#text' : string };
+  '@attr'?: { nowplaying: string };
+
+}
 
 ---
 
 <Layout />
 
+<section>
+  <h2>My Recent Tracks</h2>
+  <ul>
+    {tracks.map((track) => (
+      <li>
+        <strong>{track.name}</strong> by {track.artist['#text']}
+        {track['@attr']?.nowplaying && <span> (Listening Now! 🎧)</span>}
+      </li>
+    ))}
+  </ul>
+</section>
+
+<Footer />
