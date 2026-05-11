@@ -30,7 +30,7 @@
     box-sizing: border-box;
     position: relative;
 
-    background-color: #1f1f2480;
+    background-color: #140a0980;
 
 }
 .pfp {
@@ -87,7 +87,7 @@
     background-color: #13151b; /*or #1d1e1e*/
     width: 100%;
     
-    color: #f0d7c8;
+    color: #f0d0c8;
     box-sizing: border-box;
 
     
@@ -166,6 +166,10 @@ li {
 a:link {
     color: aliceblue;
     
+}
+
+a:visited {
+    /* color: ; */
 }
 
 .table-of-contents {
@@ -299,7 +303,7 @@ body {
     font-size: larger;
 
     background-color: /*#292a30*/ #14151b /*#27282c*/;
-    color: #ffe4c4;
+    color: #ffc4c4;
 
 
 }
