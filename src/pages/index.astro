@@ -6,20 +6,32 @@ import { date } from "astro:schema";
 
 const API_KEY = import.meta.env.LASTFM_API_KEY;
 const USERNAME = "henrywau"; //import.meta.env.LASTFM_USERNAME;
+const BASE = `https://ws.audioscrobbler.com/2.0/?method=`
 
-// const url = `https://audioscrobbler.com{USERNAME}&api_key=${API_KEY}&format=json&limit=5`;
-const url = `https://ws.audioscrobbler.com/2.0${USERNAME}&api_key=${API_KEY}&format=json&limit=5`
+// const response = await fetch(url);
+// const tracks = data.recenttracks.track as Track[];
 
-const response = await fetch(url);
-const data = await response.json();
-const tracks = data.recenttracks.track as Track[];
-const artists = data.topartists;
+// const recentTracks = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=rj&api_key=${API_KEY}&format=json`);
+const data = await recentTracks.json();
+const tracks = data.recentTracks.track as Track[];
 
-if (!response.ok) {
-  const errorText = await response.text();
-  console.error("Last.fm Error Response:", errorText);
-  throw new Error(`Failed to fetch Last.fm data: ${response.status}`);
-}
+
+
+// const topTracks = `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${USERNAME}&api_key=${API_KEY}&format=json` ;
+
+// const topArtists = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${USERNAME}&api_key=${API_KEY}&format=json`) ; //data.topartists;
+
+const [recentTracks, topArtists] = await Promise.all([
+  fetch(recentTracksUrl),
+  fetch(topTracksUrl)
+]);
+
+
+// if (!response.ok) {
+//   const errorText = await response.text();
+//   console.error("Last.fm Error Response:", errorText);
+//   throw new Error(`Failed to fetch Last.fm data: ${response.status}`);
+// }
 
 interface Track {
   name: string;
@@ -35,12 +47,12 @@ interface Track {
 <section>
   <h2>My Recent Tracks</h2>
   <ul>
-    {tracks.map((track) => (
+    <!-- {recentTracks.map((track) => (
       <li>
         <strong>{track.name}</strong> by {track.artist['#text']}
         {track['@attr']?.nowplaying && <span> (Listening Now! 🎧)</span>}
       </li>
-    ))}
+    ))} -->
   </ul>
 </section>
 
