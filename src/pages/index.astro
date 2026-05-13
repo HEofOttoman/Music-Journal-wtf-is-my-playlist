@@ -1,6 +1,9 @@
 ---
 
+import "../styles/global.css";
+
 import Layout from "../layouts/layout.astro";
+import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { date } from "astro:schema";
 
@@ -12,8 +15,8 @@ const BASE = `https://ws.audioscrobbler.com/2.0/?method=`
 // const tracks = data.recenttracks.track as Track[];
 
 // const recentTracks = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=rj&api_key=${API_KEY}&format=json`);
-const data = await recentTracks.json();
-const tracks = data.recentTracks.track as Track[];
+// const data = await recentTracks.json();
+// const tracks = data.recentTracks.track as Track[];
 
 
 
@@ -21,10 +24,10 @@ const tracks = data.recentTracks.track as Track[];
 
 // const topArtists = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${USERNAME}&api_key=${API_KEY}&format=json`) ; //data.topartists;
 
-const [recentTracks, topArtists] = await Promise.all([
-  fetch(recentTracksUrl),
-  fetch(topTracksUrl)
-]);
+// const [recentTracks, topArtists] = await Promise.all([
+//   fetch(recentTracksUrl),
+//   fetch(topTracksUrl)
+// ]);
 
 
 // if (!response.ok) {
@@ -33,16 +36,63 @@ const [recentTracks, topArtists] = await Promise.all([
 //   throw new Error(`Failed to fetch Last.fm data: ${response.status}`);
 // }
 
-interface Track {
-  name: string;
-  artist: { '#text' : string };
-  '@attr'?: { nowplaying: string };
+// interface Track {
+//   name: string;
+//   artist: { '#text' : string };
+//   '@attr'?: { nowplaying: string };
+// 
+// }
 
-}
+// Define your specific URLs
+const recentTracksUrl = `${BASE}user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=5`;
+const topTracksUrl = `${BASE}user.gettoptracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=5&period=7day`;
+
+// Fetch both at the same time
+const [recentRes, topRes] = await Promise.all([
+  fetch(recentTracksUrl),
+  fetch(topTracksUrl)
+]);
+
+const recentData = await recentRes.json();
+const topData = await topRes.json();
+
+// Direct variable assignment from the methods
+const recentTracks = recentData.recenttracks.track;
+const topTracks = topData.toptracks.track;
+
+// import walkingLarp from '../assets/thewalkinglarp.jpg';
 
 ---
 
-<Layout />
+<!-- <Layout /> tooc omplicated i'll just yoink it all here-->
+
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/src/styles/global.css">
+      <link rel="icon" type="image/x-icon" href="">
+      <title>Shrine</title> 
+  </head>
+
+
+<body>
+
+<Navbar />
+<main>
+
+  <div id="home">
+    <!-- <img class="pfp" src='walkinglarp' /> -->
+    <div class="nexttopfp reveal">
+        <h1>Henry Wau</h1>
+        <p>Hi, I'm Henry. Uhh I don't know how to describe my views on music. See my <a target="_blank" href="https://www.last.fm/user/henrywau">last.fm</a>, but this site is an attempt to explain myself lmao.
+        See also my 'blog' designed to write my notes on specific music.</p>
+        <nav class="contact">
+            <a target="_blank" href="https://www.last.fm/user/henrywau" aria-label="lastfm">Last.fm<!--<img src="GitHub_Invertocat_White.svg">--></a>
+        </nav>
+    </div>
+    <!-- <div class="scroll-hint" style="user-select: none; cursor: default;">↓</div> -->
+  </div>
 
 <section>
   <h2>My Recent Tracks</h2>
@@ -53,7 +103,26 @@ interface Track {
         {track['@attr']?.nowplaying && <span> (Listening Now! 🎧)</span>}
       </li>
     ))} -->
+    {topTracks.map(t => <p>{t.name} ({t.playcount} plays)</p>)}
   </ul>
+  <div class="project">
+    <div class="portrait">
+      <img src="assets/images/Thalizar Flag.png">
+    </div>
+        <div class="projdesc">
+        <strong>Canary Craft Flag Bot</strong>
+        <p>A Discord bot displaying national flags of the Minecraft server 'Canary Craft', formerly ADSCraft.</p>
+        <p><a target="_blank" 
+            href="https://github.com/HEofOttoman/Canary-Craft-Flag-bot">Repo</a>
+            
+    </div>
+  </div>
 </section>
-
 <Footer />
+</main>
+<!-- </Layout> -->
+
+
+
+</body>
+</html>

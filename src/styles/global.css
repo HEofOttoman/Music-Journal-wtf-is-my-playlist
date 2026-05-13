@@ -329,3 +329,11 @@ main {
     /*padding: 10px 5%; fix horizontal scrollbar*/
     
 }
+
+footer {
+    display: flex;
+    text-align: center; 
+    padding: 1rem; 
+    font-size: 0.75rem; 
+    color: #737373;
+}

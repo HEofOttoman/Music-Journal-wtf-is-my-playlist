@@ -1,12 +1,14 @@
 ---
 
+import "../styles/global.css";
+
 // const lastBuiltDateTime = new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Sydney' });
 const buildDate = new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Sydney' });
 const buildTime = new Date().toLocaleTimeString();
 
 ---
 
-<footer 
-style="text-align: center; padding: 1rem; font-size: 0.75rem; color: #737373;"><!--class="global-footer"-->
+<footer>
+    <!--class="global-footer"-->
     <p>&copy; 2025 Henry Wauzivuff. All rights reserved. Site last <s>built</s> updated on {buildDate} at {buildTime}</p>
 </footer>
