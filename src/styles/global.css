@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     align-content: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */ /* <-This fixes the layout?? Max had it though?? */
     justify-content: center;
     row-gap: 2rem;
     /* height: 100vh; <- why did this even exist */
@@ -34,7 +34,9 @@
     background-color: #140a0980;
 
 }
+
 .pfp {
+    width: auto; /* Fixes stretched out pfp on the astro site */
     height: 12rem;
     border-radius: 2rem;
     box-shadow:
@@ -54,9 +56,15 @@
 
 .nexttopfp {
     margin: 3rem;
+    
 }
 
-/* #about */section { 
+.nexttopfp div {
+    display: flex;
+    
+}
+
+section { 
     max-width: 65vw;
     min-height: fit-content; /*ong this saved me*/
     display: flex;
