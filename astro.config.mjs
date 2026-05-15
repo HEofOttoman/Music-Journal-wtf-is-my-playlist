@@ -7,6 +7,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Henry Wau`s Music Page',
+			// logo: {
+
+			// },
+			
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			sidebar: [
 				{

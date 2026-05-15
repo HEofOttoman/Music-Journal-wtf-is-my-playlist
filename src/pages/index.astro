@@ -9,7 +9,9 @@ import { date, string } from "astro:schema";
 
 import { Image } from "astro:assets";
 import walkingLarp from '../assets/thewalkinglarp.jpg';
-import Image from "astro/components/Image.astro";
+//import Image from "astro/components/Image.astro";
+
+import albumQuilt from '../assets/chartwave-henrywau-quilt-5x5-pink-3month.png';
 
 const API_KEY = import.meta.env.LASTFM_API_KEY;
 const USERNAME = "henrywau"; //import.meta.env.LASTFM_USERNAME;
@@ -22,7 +24,7 @@ const BASE = `https://ws.audioscrobbler.com/2.0/?method=`
 // }
 
 const recentTracksUrl = `${BASE}user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=5`;
-const topTracksUrl = `${BASE}user.gettoptracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=5&period=overall`;
+const topTracksUrl = `${BASE}user.gettoptracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=6&period=overall`;
 
 const [recentRes, topRes] = await Promise.all([
   fetch(recentTracksUrl),
@@ -65,6 +67,8 @@ interface Track {
       <link rel="stylesheet" href="/src/styles/global.css">
       <link rel="icon" type="image/x-icon" href="">
       <title>Shrine</title> 
+    
+
   </head>
 
 
@@ -77,15 +81,21 @@ interface Track {
     <!-- <img class="pfp" src={walkingLarp} alt="My last fm profile"/> -->
     <Image class="pfp" src={walkingLarp} alt="my last fm profile" />
     <div class="nexttopfp">
-        <h1>Henry Wau</h1>
-        <p>Hi, I'm Henry. Uhh I don't know how to describe my views on music. See my <a target="_blank" href="https://www.last.fm/user/henrywau">last.fm</a>, but this site is an attempt to explain myself lmao.
-        See also my 'blog' designed to write my notes on specific music.</p>
+        <h1>Henry Wauzivuff</h1>
+        <p>Hi, I'm Henry. Uhh I don't know how to describe my views on music, but this site is an attempt to explain myself lmao.
+        See my 'blog' designed to write my notes on specific music.</p>
         <nav class="contact">
             <a target="_blank" href="https://www.last.fm/user/henrywau" aria-label="lastfm">Last.fm<!--<img src="GitHub_Invertocat_White.svg">--></a>
         </nav>
     </div>
     <!-- <div class="scroll-hint" style="user-select: none; cursor: default;">↓</div> -->
   </div>
+
+<!-- <section id="listening-gallery">
+  <h2>Listening at a glance (Per May 3 2026)</h2>
+  <h3>Quilt</h3>
+  <Image src={albumQuilt} alt="quilt of several album covers" />
+</section> -->
 
 <section>
   <!-- <h2>My Recent Tracks</h2> -->

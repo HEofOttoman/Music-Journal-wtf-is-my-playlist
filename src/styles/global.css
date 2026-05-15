@@ -11,6 +11,7 @@
 
 /*Navbar logo*/
 #nav-icon {
+    height: auto; /* Height needs to be explicitly auto for astro components apparently */
     width: 100px;
     margin-right: 1rem;
     /*align-self: center;*/
@@ -21,7 +22,7 @@
     display: flex;
     align-items: center;
     align-content: center;
-    /* flex-wrap: wrap; */ /* <-This fixes the layout?? Max had it though?? */
+    flex-wrap: nowrap; /* <-This fixes the layout?? Max had it though?? */
     justify-content: center;
     row-gap: 2rem;
     /* height: 100vh; <- why did this even exist */
@@ -33,6 +34,9 @@
 
     background-color: #140a0980;
 
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    border-radius: 1vh;
 }
 
 .pfp {
@@ -65,6 +69,8 @@
 }
 
 section { 
+    border-radius: 1rem;
+
     max-width: 65vw;
     min-height: fit-content; /*ong this saved me*/
     display: flex;
@@ -75,6 +81,13 @@ section {
     margin-right: auto;
 
     overflow: auto; /* wtf is this overflow */
+
+    background-color: #1f1312;
+    border-color: #241615;
+    
+    border-style: solid;
+
+    padding: 1rem;
 }
 
 
@@ -104,7 +117,7 @@ section {
 
     
 }
-f
+
 .navbar-right {
     display: flex;
     flex-direction: column;
@@ -236,8 +249,22 @@ a:visited {
     text-decoration: none; 
 
     display: flex;
-
     /* padding: 1rem; */
+
+    box-shadow:
+        0 0 0 1px #ffffff1a,
+        0 10px 40px -10px #f5977a33,
+        0 20px 60px -20px #00000080;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.track-card:hover {
+    transform: translateY(-4px) rotate(-0.2deg);
+    box-shadow:
+        0 0 0 1px #ffffff22,
+        0 14px 50px -10px #957af555,
+        0 24px 70px -20px #000000a0;
+    border-color: #000000cc, var(--accent-dim);
 }
 
 .image-wrapper {
@@ -297,6 +324,7 @@ body {
     margin: 0;
     font-size: larger;
 
+    /* background-image: url(../assets/chartwave-henrywau-quilt-5x5-pink-3month.png); */ /* Kinda looks cool but not really (yet) */
     background-color: /*#292a30*/ #1f1312 /*#27282c*/;
     color: #ffc4c4;
 

@@ -1,20 +1,22 @@
 ---
 
-// import { Image } from "astro:assets";
-// import walkingLarp from '../assets/thewalkinglarp.jpg';
+import { Image } from "astro:assets";
+import walkingLarp from '../assets/thewalkinglarp.jpg';
 const path = Astro.url.pathname;
 ---
 
 <nav class="global-navbar">
-    <img id="nav-icon" src="/src/assets/thewalkinglarp.jpg" alt="page-icon">
+    <!-- <img id="nav-icon" src="/src/assets/thewalkinglarp.jpg" alt="page-icon"> -->
+    <!-- <Image id="nav-icon" src={walkingLarp} alt="page-icon" /> -->
     
+
     <div class="navbar-right">
         <h1 class="global-title">
             Henry Wau's Music Journal
         </h1>
         <ul class="navbar-links">
             <li><a href="/">Home</a></li>
-            <li><a href="../content/docs/">Timeline</a></li>
+            <li><a href="../content/docs/">|Timeline</a></li>
             <!-- <li><a href="">About</a></li> -->
             
         </ul>
