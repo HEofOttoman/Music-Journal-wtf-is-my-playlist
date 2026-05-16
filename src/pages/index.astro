@@ -44,7 +44,7 @@ interface TrackImage {
 
 // putting a constant down here causes a unterminated literal error apparently
 
-interface Track {
+interface LastfmTrack {
   name: string;
   playcount: string;
   url: string;
@@ -52,8 +52,15 @@ interface Track {
     name: string;
     mbid: String;
   };
+  album: {
+    '#text': string;
+    mbid: string;
+  }
   image: TrackImage[];
 
+  '@attr': {
+    nowplaying?: 'true' | 'false';
+  }
 }
 
 ---
@@ -79,7 +86,7 @@ interface Track {
 
   <div id="home">
     <!-- <img class="pfp" src={walkingLarp} alt="My last fm profile"/> -->
-    <Image class="pfp" src={walkingLarp} alt="my last fm profile" />
+    <Image class="pfp" src={walkingLarp} alt="my last fm profile" loading={"eager"} />
     <div class="nexttopfp">
         <h1>Henry Wauzivuff</h1>
         <p>Hi, I'm Henry. Uhh I don't know how to describe my views on music, but this site is an attempt to explain myself lmao.

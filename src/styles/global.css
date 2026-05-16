@@ -32,7 +32,7 @@
     box-sizing: border-box;
     position: relative;
 
-    background-color: #140a0980;
+    background-color: #140a09ea;
 
     margin-top: 6rem;
     margin-bottom: 6rem;
@@ -82,7 +82,7 @@ section {
 
     overflow: auto; /* wtf is this overflow */
 
-    background-color: #1f1312;
+    background-color: #1f1312f1;
     border-color: #241615;
     
     border-style: solid;
@@ -324,7 +324,7 @@ body {
     margin: 0;
     font-size: larger;
 
-    /* background-image: url(../assets/chartwave-henrywau-quilt-5x5-pink-3month.png); */ /* Kinda looks cool but not really (yet) */
+    background-image: url(../assets/chartwave-henrywau-quilt-cropped.png); /* Kinda looks cool but not really (yet) */
     background-color: /*#292a30*/ #1f1312 /*#27282c*/;
     color: #ffc4c4;
 

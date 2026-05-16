@@ -26,6 +26,7 @@ concurrency:
 
 env:
   BUILD_PATH: "." # default value when not using subfolders
+  LASTFM_API_KEY: $LASTFM_API_KEY
   # BUILD_PATH: subfolder
 
 jobs:
