@@ -31,8 +31,19 @@ const [recentRes, topRes] = await Promise.all([
   fetch(topTracksUrl)
 ]);
 
-const recentData = await recentRes.json();
-const topData = await topRes.json();
+const recentData = await recentRes.json() as RecentTracksResponse;
+const topData = await topRes.json() as TopTracksResponse;
+
+interface RecentTracksResponse {
+  recenttracks: {
+    track: LastfmTrack[];
+  };
+}
+interface TopTracksResponse {
+  toptracks: {
+    track: LastfmTrack[];
+  };
+}
 
 const recentTracks = recentData.recenttracks.track;
 const topTracks = topData.toptracks.track;

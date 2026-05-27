@@ -240,7 +240,7 @@ a:visited {
 }
 
 .track-card {
-    /* width: 100%; 30%; */
+    /* width: fit-content; */
     
     /* background-color: #292a30; */
     border-radius: 12px;
@@ -251,7 +251,7 @@ a:visited {
     display: flex;
     /* padding: 1rem; */
 
-    justify-content: center;
+    /* justify-content: center; */
 
     box-shadow:
         0 0 0 1px #ffffff1a,
@@ -273,6 +273,7 @@ a:visited {
     position: relative;
     width: 100%;
     padding: 1rem;
+    justify-content: center;
 }
 
 .track-desc {
