@@ -6,4 +6,4 @@ Uses last.fm api hopefully
 
 click to see an explanation of the music thing in a blog post thingamabob
 
-Hmm [chartwave.dev](https://chartwave.dev/)
+Hmm uses background images generated from [chartwave.dev](https://chartwave.dev/)

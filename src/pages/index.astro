@@ -5,7 +5,7 @@ import "../styles/global.css";
 import Layout from "../layouts/layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { date, string } from "astro:schema";
+import { array, date, string } from "astro:schema";
 
 import { Image } from "astro:assets";
 import walkingLarp from '../assets/thewalkinglarp.jpg';
@@ -23,7 +23,7 @@ const BASE = `https://ws.audioscrobbler.com/2.0/?method=`
 //   throw new Error(`Failed to fetch Last.fm data: ${response.status}`);
 // }
 
-const recentTracksUrl = `${BASE}user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=5`;
+const recentTracksUrl = `${BASE}user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=2`; // Appears to be +1 of the limit here, ie. count from 0
 const topTracksUrl = `${BASE}user.gettoptracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=6&period=overall`;
 
 const [recentRes, topRes] = await Promise.all([
@@ -36,6 +36,8 @@ const topData = await topRes.json();
 
 const recentTracks = recentData.recenttracks.track;
 const topTracks = topData.toptracks.track;
+
+const bgImages = [albumQuilt];
 
 interface TrackImage {
   '#text': string;
@@ -74,7 +76,12 @@ interface LastfmTrack {
       <link rel="stylesheet" href="/src/styles/global.css">
       <link rel="icon" type="image/x-icon" href="">
       <title>Shrine</title> 
-    
+
+      <meta property="og:title" content="Shrine" />
+      <meta property="og:description" content="gng how did you get here" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="" />
+      <meta property="og:image" content="../assets/thewalkinglarp.jpg" />
 
   </head>
 
@@ -103,6 +110,45 @@ interface LastfmTrack {
   <h3>Quilt</h3>
   <Image src={albumQuilt} alt="quilt of several album covers" />
 </section> -->
+
+<section>
+  <!-- <h2>My Recent Tracks</h2> -->
+  <!-- <ul>
+     {recentTracks.map((track) => (
+      <li>
+        <strong>{track.name}</strong> by {track.artist['#text']}
+        {track['@attr']?.nowplaying && <span> (Listening Now! 🎧)</span>}
+      </li>
+    ))}
+    {topTracks.map(track => <p>{track.name} ({track.playcount} plays)</p>)}
+  </ul> -->
+  <h2>Recent Tracks</h2>
+  <p>What I listened to last:</p>
+  
+  <div class="track-grid">
+    {recentTracks.map((track) => {
+      const imageUrl = track.image.find(img => img.size === 'large')?.['#text'] || '/placeholder-album.png';
+    //<p>{t.name} ({t.playcount} plays)</p>)}
+    
+    return (
+        <a href={track.url} target="_blank" class="track-card">
+        <div>
+          <div class="image-wrapper">
+            <img src={imageUrl} alt={`Album art for ${track.name}`} loading="lazy" />
+          </div>
+          <div class="track-desc">
+            <h3>{track.name}</h3>
+            <p>{track.artist.name}</p>
+            <div> {/* meta info */}
+              <span class="play-count">{track.playcount} plays</span>
+            </div>
+          </div>
+        </div>
+        </a>
+      );
+    })}
+  </div>
+</section>
 
 <section>
   <!-- <h2>My Recent Tracks</h2> -->

@@ -154,7 +154,6 @@ header {
     /*margin-top: 150px;*/
     background-color: /*#27282c*/ #292a30;
     background-size: cover;
-    /*background-image: url("assets/Henry Wauzivuff Logo.png")*/;
    
     line-height: 2rem;
     min-width: 100%;
@@ -324,7 +323,7 @@ body {
     margin: 0;
     font-size: larger;
 
-    background-image: url(../assets/chartwave-henrywau-quilt-cropped.png); /* Kinda looks cool but not really (yet) */
+    /*background-image: url(../assets/chartwave-henrywau-quilt-cropped.png);*/ /* Kinda looks cool but not really (yet) */
     background-color: /*#292a30*/ #1f1312 /*#27282c*/;
     color: #ffc4c4;
 
