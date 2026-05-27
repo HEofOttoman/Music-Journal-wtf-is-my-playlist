@@ -76,9 +76,10 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20vh; /* used to space sections bc gap under main does not work like expected */
 
     overflow: auto; /* wtf is this overflow */
 
@@ -193,7 +194,7 @@ a:link {
 }
 
 a:visited {
-    /* color: ; */
+    color: pink;
 }
 
 
@@ -249,6 +250,8 @@ a:visited {
 
     display: flex;
     /* padding: 1rem; */
+
+    justify-content: center;
 
     box-shadow:
         0 0 0 1px #ffffff1a,
@@ -323,7 +326,7 @@ body {
     margin: 0;
     font-size: larger;
 
-    /*background-image: url(../assets/chartwave-henrywau-quilt-cropped.png);*/ /* Kinda looks cool but not really (yet) */
+    background-image: url(../assets/chartwave-henrywau-quilt-cropped.png); /* Kinda looks cool but not really (yet) */
     background-color: /*#292a30*/ #1f1312 /*#27282c*/;
     color: #ffc4c4;
 
@@ -335,6 +338,8 @@ main {
     max-width: 1000px;
     margin: 0 auto;   /* centers everything in main, fix broken adding main */
     padding: 0 1rem;
+
+    /* gap: 20vh; *//* adds spacing between things */
 }
 
 .global-footer {
