@@ -32,7 +32,14 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
+
+    #- name: Install, build, and deploy your site
+    # uses: withastro/action@v3
+    env:
+      LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+      LASTFM_USERNAME: henrywau
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -77,11 +84,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ env.BUILD_PATH }}/dist
-      - name: Install, build, and deploy your site
-        uses: withastro/action@v3
-        env:
-          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-          LASTFM_USERNAME: henrywau
+      
 
   deploy:
     environment:
