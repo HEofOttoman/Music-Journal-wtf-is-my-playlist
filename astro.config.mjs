@@ -4,6 +4,9 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://heofottoman.github.io/Music-Journal-wtf-is-my-playlist',
+	base: '',
+	
 	integrations: [
 		starlight({
 			title: 'Henry Wau`s Music Page',
