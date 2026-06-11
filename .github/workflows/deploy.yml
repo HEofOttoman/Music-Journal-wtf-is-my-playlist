@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Astro to GitHub Pages (with Deno)
 
 on:
   # Trigger the workflow every time you push to the `main` branch
@@ -39,39 +39,13 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-  # deploy: Astro Deno deployment guide
-    #name: Deploy
-    # runs-on: ubuntu-latest
     permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
+      id-token: write
+      contents: read
       pages: write
     
     steps:
       
-      # - name: Clone repository
-      #   uses: actions/checkout@v6
-
-      # # Not using npm? Change `npm ci` to `yarn install` or `pnpm i`
-      # - name: Install dependencies
-      #   run: npm ci
-
-      # # Not using npm? Change `npm run build` to `yarn build` or `pnpm run build`
-      # - name: Build Astro
-      #   run: npm run build
-
-      # - name: Upload Artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: 'dist'
-      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-
-      # - name: Upload to Deno Deploy
-      #   uses: denoland/deployctl@v1
-      #   with:
-      #     project: Music Tribute # TODO: replace with Deno Deploy project name
-      #     entrypoint: jsr:@std/http/file-server
-      #     root: dist
