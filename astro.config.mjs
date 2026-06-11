@@ -6,8 +6,8 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	// site: 'https://heofottoman.github.io/Music-Journal-wtf-is-my-playlist',
-	// site: 'https://heofottoman.github.io',
-	// base: '/Music-Journal-wtf-is-my-playlist',
+	site: 'https://musicjournal.henrywauzivuff.xyz',
+	base: '/',
 	
 	output: 'static',
 	adapter: deno(),
