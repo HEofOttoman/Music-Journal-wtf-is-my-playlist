@@ -1,15 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-// import deno from '@deno/astro-adapter'
+import deno from '@deno/astro-adapter'
 import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
 	// site: 'https://heofottoman.github.io/Music-Journal-wtf-is-my-playlist',
-	site: 'https://heofottoman.github.io',
-	base: '/Music-Journal-wtf-is-my-playlist',
+	// site: 'https://heofottoman.github.io',
+	// base: '/Music-Journal-wtf-is-my-playlist',
 	
 	output: 'static',
+	adapter: deno(),
 
 	integrations: [
 		starlight({
