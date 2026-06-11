@@ -2,6 +2,7 @@
   "version": "5",
   "specifiers": {
     "npm:@astrojs/starlight@~0.38.4": "0.38.4_astro@6.2.1",
+    "npm:@deno/astro-adapter@~0.5.2": "0.5.2_astro@6.2.1",
     "npm:astro@^6.1.9": "6.2.1",
     "npm:sharp@~0.34.5": "0.34.5"
   },
@@ -166,6 +167,12 @@
     },
     "@ctrl/tinycolor@4.2.0": {
       "integrity": "sha512-kzyuwOAQnXJNLS9PSyrk0CWk35nWJW/zl/6KvnTBMFK65gm7U1/Z5BqjxeapjZCIhQcM/DsrEmcbRwDyXyXK4A=="
+    },
+    "@deno/astro-adapter@0.5.2_astro@6.2.1": {
+      "integrity": "sha512-6lcgjHOvKeqFi7AKXJ6y34lXWHFy7Ech2Y2be4I8GYg/VSPHFfrz7nIxjqLhNfZ6BT+fcxUp+rqCgKghD7R/bQ==",
+      "dependencies": [
+        "astro"
+      ]
     },
     "@emnapi/runtime@1.10.0": {
       "integrity": "sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA==",
@@ -2945,6 +2952,7 @@
     "packageJson": {
       "dependencies": [
         "npm:@astrojs/starlight@~0.38.4",
+        "npm:@deno/astro-adapter@~0.5.2",
         "npm:astro@^6.1.9",
         "npm:sharp@~0.34.5"
       ]

@@ -1,12 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import deno from '@deno/astro-adapter'
 import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://heofottoman.github.io/Music-Journal-wtf-is-my-playlist',
+	// site: 'https://heofottoman.github.io/Music-Journal-wtf-is-my-playlist',
+	site: 'https://heofottoman.github.io',
 	base: '',
 	
+	output: 'server',
+	adapter: deno(),
+
 	integrations: [
 		starlight({
 			title: 'Henry Wau`s Music Page',
