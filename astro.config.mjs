@@ -25,14 +25,15 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Artists',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Favorite artists', slug: 'docs/artists/artistsilike' },
-					],
+					autogenerate: { directory: 'docs/artists' }
 				},
 				{
 					label: 'Albums',
 					autogenerate: { directory: 'docs/albums' },
+				},
+				{
+					label: 'Tracks',
+					autogenerate: { directory: 'docs/tracks' },
 				},
 			],
 

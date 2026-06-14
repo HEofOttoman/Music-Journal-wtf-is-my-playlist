@@ -6,3 +6,4 @@ date: 2026--06--14
 
 Hmm.
 - Soushi Sakiyama - Akari
+- Svard - Itch/scratch card

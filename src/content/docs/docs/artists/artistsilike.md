@@ -13,7 +13,8 @@ date: 2026--06--14
 - AZALI
 - Far (the youtube fl studio composer)
 - Hans Zimmer
-- Good Kid (new fan!)
+- Good Kid (new fan! kinda)
+- Svard (related to youtuber Geopold)
 - Alan Walker
 - ^On top of that several old ~2017 NCS artists are good too
 
