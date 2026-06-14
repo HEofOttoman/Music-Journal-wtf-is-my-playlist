@@ -24,10 +24,10 @@ export default defineConfig({
 
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Artists',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'docs/guides/example' },
+						{ label: 'Favorite artists', slug: 'docs/artists/artistsilike' },
 					],
 				},
 				{
