@@ -15,4 +15,5 @@ date: 2026--06--14
 - Hans Zimmer
 - Good Kid (new fan!)
 - Alan Walker
-- ^On top of that several NCS artists are good too
+- ^On top of that several old ~2017 NCS artists are good too
+

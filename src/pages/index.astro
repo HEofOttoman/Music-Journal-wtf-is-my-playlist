@@ -25,14 +25,18 @@ const BASE = `https://ws.audioscrobbler.com/2.0/?method=`
 
 const recentTracksUrl = `${BASE}user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=2`; // Appears to be +1 of the limit here, ie. count from 0
 const topTracksUrl = `${BASE}user.gettoptracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=6&period=overall`;
+const userInfoUrl = `${BASE}user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`;
 
-const [recentRes, topRes] = await Promise.all([
+const [recentRes, topRes, userInfo] = await Promise.all([
   fetch(recentTracksUrl),
-  fetch(topTracksUrl)
+  fetch(topTracksUrl),
+  fetch(userInfoUrl)
 ]);
 
 const recentData = await recentRes.json() as RecentTracksResponse;
 const topData = await topRes.json() as TopTracksResponse;
+
+const userData = await userInfo.json();
 
 interface RecentTracksResponse {
   recenttracks: {
@@ -47,6 +51,9 @@ interface TopTracksResponse {
 
 const recentTracks = recentData.recenttracks.track;
 const topTracks = topData.toptracks.track;
+
+const rawCount = parseInt(userData.user.playcount, 10);
+const playCount = rawCount.toLocaleString();
 
 const bgImages = [albumQuilt];
 
@@ -109,8 +116,8 @@ interface LastfmTrack {
         <h1>Henry Wauzivuff</h1>
         <p>Hi, I'm Henry, and I don't know how to describe my taste in music.</p>
         <nav class="contact">
+            <a target="_blank" href="https://www.last.fm/user/henrywau" aria-label="scrobbles">{playCount} Scrobbles</a>
             <a target="_blank" href="https://www.last.fm/user/henrywau" aria-label="lastfm">Last.fm<!--<img src="GitHub_Invertocat_White.svg">--></a>
-            <a target="_blank" href="https://www.last.fm/user/henrywau" aria-label="lastfm">0 Scrobbles</a>
             <a href="/docs/">|Music Pseudo-Blog</a>
         </nav>
     </div>

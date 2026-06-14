@@ -16,18 +16,18 @@ hero:
       ##variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Things
+## Things here
 
 <CardGrid stagger>
-	<Card title="Artists" icon="sun">
+	<LinkCard title="Artists" icon="sun" href="/docs/artists/artistsilike.md">
 		Some artists I like.
-	</Card>
-	<Card title="Albums" icon="moon">
+	</LinkCard>
+	<LinkCard title="Albums" icon="moon" href="/docs/albums/albums.md">
 		Albums I enjoy.
-	</Card>
-	<Card title="Genres" icon="setting">
+	</LinkCard>
+	<LinkCard title="Genres" icon="setting">
 		yes.
-	</Card>
+	</LinkCard>
 </CardGrid>
