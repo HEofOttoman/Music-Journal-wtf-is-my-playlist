@@ -9,15 +9,16 @@ export default defineConfig({
 	site: 'https://musicjournal.henrywauzivuff.xyz',
 	base: '/',
 	
-	output: 'server',
+	output: 'server', // This might be causing issues
 	adapter: deno(),
-
+	
 	integrations: [
 		starlight({
 			title: "Henry Wau's Music Collection",
 			// logo: {
 
 			// },
+
 			
 			social: [{ icon: 'github', label: 'GitHub', href: '' }],
 
