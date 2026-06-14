@@ -9,17 +9,17 @@ export default defineConfig({
 	site: 'https://musicjournal.henrywauzivuff.xyz',
 	base: '/',
 	
-	output: 'static',
+	output: 'server',
 	adapter: deno(),
 
 	integrations: [
 		starlight({
-			title: 'Henry Wau`s Music Page',
+			title: "Henry Wau's Music Collection",
 			// logo: {
 
 			// },
 			
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [{ icon: 'github', label: 'GitHub', href: '' }],
 
 			sidebar: [
 				{

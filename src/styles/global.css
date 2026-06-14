@@ -150,17 +150,18 @@ section {
     text-decoration: underline;
 }
 
-
-header {
-    /*margin-top: 150px;*/
+/* Astro starlight refers to this element as well */
+header { 
     background-color: /*#27282c*/ #292a30;
     background-size: cover;
    
     line-height: 2rem;
     min-width: 100%;
 
-    padding-top: 1rem;
-    padding-bottom: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    background-color: #0c0302;
 }
 
 /*
@@ -334,6 +335,12 @@ body {
 
 }
 
+/* Astro style */
+.main-frame { 
+    background-color: #17181cce;
+    
+}
+
 main {
     width: 100%;
     max-width: 1000px;
@@ -342,6 +349,12 @@ main {
 
     /* gap: 20vh; *//* adds spacing between things */
 }
+
+/* removes astro light theme */
+starlight-theme-select {
+  display: none !important;
+}
+
 
 .global-footer {
     margin-top: 100px;

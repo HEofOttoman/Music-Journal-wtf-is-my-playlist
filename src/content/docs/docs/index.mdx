@@ -1,40 +1,33 @@
 ---
-title: Welcome to My Music
+title: Music Journal
 description: Get started building your docs site with Starlight.
 template: splash # Remove or comment out this line to display the site sidebar on this page.
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Wowzers welcome to my first attempt at using Starlight
   image:
     file: /src/assets/thewalkinglarp.jpg
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+  ## actions:
+    ## - text: Example Guide
+    ##link: /guides/example/
+      ##icon: right-arrow
+    ## - text: Read the Starlight docs
+      ##link: https://starlight.astro.build
+      ##icon: external
+      ##variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Things
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Thoughts on artists.
+	<Card title="Artists" icon="sun">
+		Some artists I like.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Albums" icon="moon">
+		Albums I enjoy.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Genres" icon="setting">
+		yes.
 	</Card>
 </CardGrid>
