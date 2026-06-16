@@ -9,6 +9,7 @@ Album quilts generated from [Last fm labs](https://www.last.fm/labs/album-quilt)
 - Henry Wau
 - Googling stuff
 - And Copilot for figuring out why my deployments dont work 🥀
+
 oh yeah also jippity for making a horrible template I don't even want to use.
 
 ## Challenges
