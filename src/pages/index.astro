@@ -84,11 +84,22 @@ interface LastfmTrack {
 }
 
 // Helper function to get album image URL, with fallback to Spotify or placeholder
-function getAlbumImageUrl(track: LastfmTrack): string {
+async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
   // Try to get from Last.fm API (large size)
   const lastfmImage = track.image.find(img => img.size === 'large')?.['#text'];
-  if (lastfmImage) {
+  if (lastfmImage && !lastfmImage.includes('userserve-cdn') && lastfmImage !== '') {
     return lastfmImage;
+  }
+
+  if (track.album.mbid) {
+    const coverUrl = `https://coverartarchive.org/release/${track.album.mbid}/front-250.jpg`;
+  
+    const response = await fetch(coverUrl, { method: 'HEAD' });
+    if (response.ok) {
+        return coverUrl;
+    }
+
+    return 
   }
 
   // Fallback: Generate Spotify image search URL
@@ -101,29 +112,29 @@ function getAlbumImageUrl(track: LastfmTrack): string {
   return placeholderSvg;
 }
 
-const mbid = topData.toptracks.track.mbid;
-console.table(top);
-if (mbid) {
-  const url = 'https://musicbrainz.org/ws/2/artist/' + mbid + '?inc=url-rels&fmt=json';
-  console.log(url);
-  fetch(url)
-  .then(res => res.json())
-  .then((out) => {
-      const relations = out.relations;
-      console.table(relations);
-      // Find image relation
-      for (let i = 0; i < relations.length; i++) {
-          if (relations[i].type === 'image') {
-              let image_url = relations[i].url.resource;
-              if (image_url.startsWith('https://commons.wikimedia.org/wiki/File:')) {
-                  const filename = image_url.substring(image_url.lastIndexOf('/') + 1);
-                  image_url = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/' + filename;
-              }
-              console.log(image_url);
-              success(image_url);
-          }
-      }
-})}
+// const mbid = topData.toptracks.track.mbid;
+// console.table(top);
+// if (mbid) {
+//   const url = 'https://musicbrainz.org/ws/2/artist/' + mbid + '?inc=url-rels&fmt=json';
+//   console.log(url);
+//   fetch(url)
+//   .then(res => res.json())
+//   .then((out) => {
+//       const relations = out.relations;
+//       console.table(relations);
+//       // Find image relation
+//       for (let i = 0; i < relations.length; i++) {
+//           if (relations[i].type === 'image') {
+//               let image_url = relations[i].url.resource;
+//               if (image_url.startsWith('https://commons.wikimedia.org/wiki/File:')) {
+//                   const filename = image_url.substring(image_url.lastIndexOf('/') + 1);
+//                   image_url = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/' + filename;
+//               }
+//               console.log(image_url);
+//               success(image_url);
+//           }
+//       }
+// })}
 
 // Get base URL for og:image
 const siteUrl = import.meta.env.SITE || 'https://example.com';
@@ -138,7 +149,7 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="/src/styles/global.css">
-      <link rel="icon" type="image/x-icon" href="/favicon.svg">
+      <link rel="icon" type="image/png" href="https://cdn.hackclub.com/019f5bb8-002b-7bbe-8094-aa1ab1cafad2/thewalkinglarpcrop.jpg">
       <title>Shrine Malevolent (not)</title> 
 
       <meta property="og:title" content="Shrine" />
