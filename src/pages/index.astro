@@ -91,25 +91,30 @@ async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
     return lastfmImage;
   }
 
+  // const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
+
   if (track.album.mbid) {
+    try {
     const coverUrl = `https://coverartarchive.org/release/${track.album.mbid}/front-250.jpg`;
   
     const response = await fetch(coverUrl, { method: 'HEAD' });
     if (response.ok) {
-        return coverUrl;
+      return coverUrl;
+    }} catch {
+      console.log(`No cover art found for album ${track.album['#text']}`);
     }
-
-    return 
   }
+
+  return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="250" height="250"%3E%3Crect fill="%23333333" width="250" height="250"/%3E%3Ctext x="50%25" y="50%25" font-size="14" fill="white" text-anchor="middle"%3ENo Art%3C/text%3E%3C/svg%3E';
 
   // Fallback: Generate Spotify image search URL
   // Note: This uses Spotify's search but returns a generic fallback
-  const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
+  // const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
   
-  // For now, return a data URI SVG placeholder with album info
-  const placeholderSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Crect fill='%23333333' width='250' height='250'/%3E%3Ctext x='50%25' y='40%25' font-size='16' fill='white' text-anchor='middle' font-family='Arial' word-wrap='break-word'%3E${encodeURIComponent(track.name.substring(0, 20))}%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='12' fill='%23888888' text-anchor='middle' font-family='Arial'%3E${encodeURIComponent(track.artist.name.substring(0, 20))}%3C/text%3E%3C/svg%3E`;
+  // // For now, return a data URI SVG placeholder with album info
+  // const placeholderSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Crect fill='%23333333' width='250' height='250'/%3E%3Ctext x='50%25' y='40%25' font-size='16' fill='white' text-anchor='middle' font-family='Arial' word-wrap='break-word'%3E${encodeURIComponent(track.name.substring(0, 20))}%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='12' fill='%23888888' text-anchor='middle' font-family='Arial'%3E${encodeURIComponent(track.artist.name.substring(0, 20))}%3C/text%3E%3C/svg%3E`;
   
-  return placeholderSvg;
+  // return placeholderSvg;
 }
 
 // const mbid = topData.toptracks.track.mbid;
@@ -202,8 +207,9 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
   <p>What I listened to last:</p>
   
   <div class="track-grid">
-    {recentTracks.map((track) => {
-      const imageUrl = getAlbumImageUrl(track);
+    {
+    await Promise.all(recentTracks.map((track) => {
+    const imageUrl = getAlbumImageUrl(track);
     //<p>{t.name} ({t.playcount} plays)</p>)}
     
     return (
@@ -222,7 +228,8 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
         </div>
         </a>
       );
-    })}
+    }))
+    }
   </div>
 </section>
 
