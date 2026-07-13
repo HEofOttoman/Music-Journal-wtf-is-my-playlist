@@ -1,6 +1,6 @@
 # Welcome to the Shrine of my atrocious music tastes
 ![Site Preview Zero](<public/Site Preview.png>)
-
+This is a website featuring my Last.FM data.
 Uses Deno & AstroJS with API calls to the LastFM API (maybe dynamically now).
 Album quilts generated from [Last fm labs](https://www.last.fm/labs/album-quilt) & [tapmusic](https://tapmusic.net)
 
