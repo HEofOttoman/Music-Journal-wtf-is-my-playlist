@@ -4,7 +4,9 @@ This is a website featuring my Last.FM data.
 Uses Deno & AstroJS with API calls to the LastFM API (maybe dynamically now).
 Album quilts generated from [Last fm labs](https://www.last.fm/labs/album-quilt) & [tapmusic](https://tapmusic.net)
 
-To deploy, run `deno run -A ./dist/server/entry.mjs`
+## Deployment (Notes to self)
+1. REMEMBER TO ALWAYS RUN `Deno run build`
+2. Run `deno run -A ./dist/server/entry.mjs`
 
 ## Contributors
 - Henry Wau

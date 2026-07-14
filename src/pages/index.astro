@@ -92,7 +92,7 @@ async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
     return lastfmImage;
   }
 
-  if (track.album.mbid) {
+  if (track.album && track.album.mbid) {
     try {
     const coverUrl = `https://coverartarchive.org/release/${track.album.mbid}/front-250.jpg`;
   
