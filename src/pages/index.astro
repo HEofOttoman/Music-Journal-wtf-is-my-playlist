@@ -115,6 +115,13 @@ async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
   // return placeholderSvg;
 }
 
+const topTracksWithImages = await Promise.all(
+  topTracks.map(async (track) => ({
+    ...track,
+    imageUrl: await getAlbumImageUrl(track)
+  }))
+);
+
 // const mbid = topData.toptracks.track.mbid;
 // console.table(top);
 // if (mbid) {
@@ -244,15 +251,15 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
   <p>Some of my most played tracks. Apologies for the missing album art</p>
   
   <div class="track-grid">
-    {topTracks.map((track) => {
-      const imageUrl = getAlbumImageUrl(track);
+    {topTracksWithImages.map((track) => {
+      // const imageUrl = getAlbumImageUrl(track);
     //<p>{t.name} ({t.playcount} plays)</p>)}
     
     return (
         <a href={track.url} target="_blank" class="track-card">
         <div>
           <div class="image-wrapper">
-            <img src={imageUrl} alt={`Album art for ${track.name}`} loading="lazy" />
+            <img src={track.imageUrl} alt={`Album art for ${track.name}`} loading="lazy" />
           </div>
           <div class="track-desc">
             <h3>{track.name}</h3>
