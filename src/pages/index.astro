@@ -91,8 +91,6 @@ async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
     return lastfmImage;
   }
 
-  // const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
-
   if (track.album.mbid) {
     try {
     const coverUrl = `https://coverartarchive.org/release/${track.album.mbid}/front-250.jpg`;
@@ -207,8 +205,7 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
   <p>What I listened to last:</p>
   
   <div class="track-grid">
-    {
-    await Promise.all(recentTracks.map((track) => {
+    {recentTracks.map((track) => {
     const imageUrl = getAlbumImageUrl(track);
     //<p>{t.name} ({t.playcount} plays)</p>)}
     
@@ -228,8 +225,7 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
         </div>
         </a>
       );
-    }))
-    }
+    })}
   </div>
 </section>
 

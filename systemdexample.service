@@ -1,0 +1,18 @@
+[Unit]
+Description=Music Journal
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+# If you are not using node, replace /usr/local/bin/node
+# Also make sure to replace <project>, and index.js if necessary
+ExecStart=/usr/local/bin/node /root/<project>/index.js
+# Make sure to replace <project>
+WorkingDirectory=/root/<project>
+Restart=always
+RestartSec=5
+# Uncomment this if you have a .env file, change the path if needed:
+# EnvironmentFile=/root/<project>/.env
+
+[Install]
+WantedBy=multi-user.target
