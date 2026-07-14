@@ -8,7 +8,8 @@ import Footer from "../components/Footer.astro";
 // import { array, date, string } from "astro:schema";
 
 import { Image } from "astro:assets";
-import walkingLarp from '../assets/thewalkinglarp.jpg';
+// import walkingLarp from '../assets/thewalkinglarp.jpg';
+const walkingLarp = `https://cdn.hackclub.com/019f5bb8-002b-7bbe-8094-aa1ab1cafad2/thewalkinglarpcrop.jpg`;
 //import Image from "astro/components/Image.astro";
 
 import albumQuilt from '../assets/28mayAlbumCollage.jpeg';
@@ -108,10 +109,18 @@ async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
   // Note: This uses Spotify's search but returns a generic fallback
   
   try {
-    const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
+    // const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
+    // return spotifyFallback;
 
-    return spotifyFallback;
+    const deezerRes = await fetch(
+      `https://api.deezer.com/search/album?q=${encodeURIComponent(track.album?.['#text'] || track.name)}`
+    );
+    const deezerData = await deezerRes.json();
 
+    if (deezerData.data?.[0]?.cover_big) {
+      return deezerData.data[0].cover_big;
+    }
+    
   } catch (error) {
     console.log(`No cover art found for album ${track.album['#text']}`)
   }
@@ -195,8 +204,9 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
 <main>
 
   <div id="home">
-    <!-- <img class="pfp" src={walkingLarp} alt="My last fm profile"/> -->
-    <Image class="pfp" src={walkingLarp} alt="my last fm profile" loading={"eager"} />
+    <!-- <img class="pfp" src="https://cdn.hackclub.com/019f5bb8-002b-7bbe-8094-aa1ab1cafad2/thewalkinglarpcrop.jpg" alt="My last fm profile"/> -->
+    <img class="pfp" src={walkingLarp} alt="My last fm profile"/>
+    <!-- <Image class="pfp" src="https://cdn.hackclub.com/019f5bb8-002b-7bbe-8094-aa1ab1cafad2/thewalkinglarpcrop.jpg" alt="my last fm profile" loading={"eager"} /> -->
     <div class="nexttopfp">
         <h1>Henry Wauzivuff</h1>
         <p>Hi, I'm Henry, and I don't know how to describe my taste in music.</p>
