@@ -87,7 +87,8 @@ interface LastfmTrack {
 async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
   // Try to get from Last.fm API (large size)
   const lastfmImage = track.image.find(img => img.size === 'large')?.['#text'];
-  if (lastfmImage && !lastfmImage.includes('userserve-cdn') && lastfmImage !== '') {
+  // if (lastfmImage && !lastfmImage.includes('lastfm') && lastfmImage !== '') {
+  if (lastfmImage && lastfmImage !== 'https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png') {
     return lastfmImage;
   }
 
@@ -220,7 +221,7 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
   
   <div class="track-grid">
     {recentTracksWithImages.map((track) => {
-    const imageUrl = getAlbumImageUrl(track);
+    // const imageUrl = getAlbumImageUrl(track);
     //<p>{t.name} ({t.playcount} plays)</p>)}
     
     return (
