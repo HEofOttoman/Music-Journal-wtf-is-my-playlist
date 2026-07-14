@@ -83,7 +83,7 @@ interface LastfmTrack {
   }
 }
 
-// Helper function to get album image URL, with fallback to Spotify or placeholder
+// Helper function to get album image URL, with fallback to Spotify, mbid, or placeholder
 async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
   // Try to get from Last.fm API (large size)
   const lastfmImage = track.image.find(img => img.size === 'large')?.['#text'];
@@ -104,16 +104,26 @@ async function getAlbumImageUrl(track: LastfmTrack): Promise<string> {
     }
   }
 
-  return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="250" height="250"%3E%3Crect fill="%23333333" width="250" height="250"/%3E%3Ctext x="50%25" y="50%25" font-size="14" fill="white" text-anchor="middle"%3ENo Art%3C/text%3E%3C/svg%3E';
-
   // Fallback: Generate Spotify image search URL
   // Note: This uses Spotify's search but returns a generic fallback
-  // const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
+  
+  try {
+    const spotifyFallback = `https://open.spotify.com/search/${encodeURIComponent(track.name + ' ' + track.artist.name)}`;
+
+    return spotifyFallback;
+
+  } catch (error) {
+    console.log(`No cover art found for album ${track.album['#text']}`)
+  }
+  
   
   // // For now, return a data URI SVG placeholder with album info
   // const placeholderSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Crect fill='%23333333' width='250' height='250'/%3E%3Ctext x='50%25' y='40%25' font-size='16' fill='white' text-anchor='middle' font-family='Arial' word-wrap='break-word'%3E${encodeURIComponent(track.name.substring(0, 20))}%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='12' fill='%23888888' text-anchor='middle' font-family='Arial'%3E${encodeURIComponent(track.artist.name.substring(0, 20))}%3C/text%3E%3C/svg%3E`;
   
   // return placeholderSvg;
+
+  return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="250" height="250"%3E%3Crect fill="%23333333" width="250" height="250"/%3E%3Ctext x="50%25" y="50%25" font-size="14" fill="white" text-anchor="middle"%3ENo Art%3C/text%3E%3C/svg%3E';
+
 }
 
 const topTracksWithImages = await Promise.all(
