@@ -251,8 +251,12 @@ const ogImageUrl = `${siteUrl.replace(/\/$/, '')}/og-profile-image.jpg`;
               const recentTrackImgs = document.getElementsByClassName('recentTrackImg')
               
               if (recentTrackImgs.length > 0) {
-                  (recentTrackImgs[0] as HTMLElement).style.width = "250px";
-                  (recentTrackImgs[0] as HTMLElement).style.height = "auto";
+                for (let index = 0; index < recentTrackImgs.length; index++) {
+                  const recentTrackImg = recentTrackImgs[index];
+                  (recentTrackImg as HTMLElement).style.width = "250px";
+                  (recentTrackImg as HTMLElement).style.height = "auto";  
+                }  
+                
               }
 
             </script>
